@@ -1,27 +1,25 @@
 # TechFusion
 
-Sistema desenvolvido para gerenciamento de uma assistência técnica.
+Sistema web desenvolvido para auxiliar no gerenciamento de uma assistência técnica, oferecendo uma forma prática de organizar clientes, equipamentos e atendimentos.
 
 ---
 
-## 📋 Sobre o projeto
+## 📖 Sobre o projeto
 
-O TechFusion é um sistema criado para facilitar o cadastro de clientes e equipamentos em uma assistência técnica.
-
-Seu objetivo é tornar o atendimento mais organizado e eficiente.
+O TechFusion foi criado com o objetivo de facilitar o controle dos serviços realizados por uma assistência técnica, reunindo em um único sistema o cadastro de clientes e equipamentos, tornando o atendimento mais rápido e organizado.
 
 ---
 
-## 🚀 Funcionalidades
+## ✨ Funcionalidades
 
-- Login
+- Login de usuários
 - Cadastro de clientes
 - Cadastro de equipamentos
-- Interface responsiva
+- Interface intuitiva e responsiva
 
 ---
 
-## 🛠 Tecnologias utilizadas
+## 💻 Tecnologias utilizadas
 
 - HTML5
 - CSS3
@@ -31,7 +29,7 @@ Seu objetivo é tornar o atendimento mais organizado e eficiente.
 
 ---
 
-## 📂 Estrutura do projeto
+## 📁 Estrutura do projeto
 
 ```
 TechFusion
@@ -47,13 +45,13 @@ TechFusion
 
 ## ▶ Como executar
 
-1. Faça o download do projeto.
-2. Abra a pasta.
-3. Execute o arquivo `index.html`.
+1. Clone ou faça o download do repositório.
+2. Abra a pasta do projeto.
+3. Execute o arquivo `index.html` em um navegador.
 
 ---
 
-## 👩‍💻 Desenvolvedores
+## 👨‍💻 Desenvolvedores
 
 Beatriz Luiza Polizel e Luiz Felipe da Silva
 
