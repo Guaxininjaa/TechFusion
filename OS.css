@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.formulario {
+    width: 300px;
+}
+
+.campo {
+    margin-bottom: 8px;
+}
+
+.campo label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 5px;
+}
+
+.botoes {
+    margin-top: 10px;
+}
+
+.botoes button {
+    margin: 3px;
+    padding: 6px 10px;
+}
+
+.card {
+    border: 1px solid #999;
+    padding: 10px;
+    margin: 10px 0;
+    width: 300px;
+}

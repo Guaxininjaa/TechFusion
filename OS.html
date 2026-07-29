@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="OS.css">
+    <title>Ordem de Serviço</title>
+</head>
+<body>
+    <h1>Ordem de Serviço</h1>
+    <div class="formulario">
+        <div class="campo">
+            <label>Cliente</label>
+            <input type="text" id="inputCliente">
+        </div>
+        <div class="campo">
+            <label>Equipamento</label>
+            <input type="text" id="inputEquipamento">
+        </div>
+        <div class="campo">
+            <label>Defeito</label>
+            <input type="text" id="inputDefeito">
+        </div>
+        <div class="campo">
+            <label>Status</label>
+            <input type="text" id="inputStatus">
+        </div>
+        <div class="botoes">
+            <button onclick="cadastrarOS()">Cadastrar</button>
+            <button onclick="salvarOS()">Salvar</button>
+            <button onclick="mostrarTodas()">Mostrar todas</button>
+            <button onclick="excluirOS()">Excluir</button>
+        </div>
+    </div>
+    <div id="painel">
+    </div>
+
+    <script src="OS.js"></script>
+</body>
+</html>
