@@ -2,11 +2,11 @@ const formulario = document.querySelector("#cadastroForm");
 
 formulario.addEventListener("submit", function(event){
 
-    event.preventDefault();
+event.preventDefault();
 
-    const empresa = document.querySelector("#empresa").value;
-    const cnpj = document.querySelector("#cnpj").value;
-    const email = document.querySelector("#email").value;
+const empresa = document.querySelector("#empresa").value;
+const cnpj = document.querySelector("#cnpj").value;
+const email = document.querySelector("#email").value;
     const senha = document.querySelector("#senha").value;
     const confirmar = document.querySelector("#confirmar").value;
 

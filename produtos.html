@@ -1,103 +1,185 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechFusion | Produtos e Peças</title>
+
+    <title>TechFusion | Produtos</title>
+
+    <link rel="stylesheet" href="produtos.css">
 </head>
+
 <body>
 
-    <h1>TechFusion - Produtos e Peças</h1>
-    <a href="dashboard.html"><button>⬅ Voltar para a Home</button></a>
-    <hr>
+    <header>
+        <h1>TechFusion - Cadastro de Produtos</h1>
 
-    <h2 id="titulo-form">Cadastrar Novo Produto</h2>
-    
-    <!-- Formulário distribuído em 3 colunas -->
-    <form id="form-produto">
-        <input type="hidden" id="produto-id">
+        <a href="dashboard.html">
+            <button class="botao-voltar">⬅ Voltar</button>
+        </a>
+    </header>
 
-        <table border="0" cellpadding="5">
-            <tr>
-                <!-- Coluna 1 -->
-                <td>
-                    <label>Foto do Produto:</label><br>
-                    <input type="file" id="foto" accept="image/*"><br><br>
 
-                    <label>Marca:</label><br>
-                    <input type="text" id="marca" required><br><br>
+    <main>
 
-                    <label>Modelo:</label><br>
-                    <input type="text" id="modelo" required><br><br>
+        <section class="cadastro">
 
-                    <label>Cor:</label><br>
-                    <input type="text" id="cor" required>
-                </td>
+            <h2 id="titulo-form">Cadastrar Produto</h2>
 
-                <!-- Coluna 2 -->
-                <td>
-                    <label>Categoria:</label><br>
-                    <input type="text" id="categoria" placeholder="Digite a categoria" required><br><br>
 
-                    <label>Quantidade:</label><br>
-                    <input type="number" id="quantidade" required><br><br>
+            <form id="form-produto">
 
-                    <label>Preço de Custo (R$):</label><br>
-                    <input type="number" step="0.01" id="preco-custo" required><br><br>
+                <input type="hidden" id="produto-id">
 
-                    <label>Preço de Venda (R$):</label><br>
-                    <input type="number" step="0.01" id="preco-venda" required>
-                </td>
 
-                <!-- Coluna 3 -->
-                <td style="vertical-align: top;">
-                    <label>Descrição do Produto:</label><br>
-                    <textarea id="descricao" rows="10" cols="30" placeholder="Digite as características, detalhes e observações..."></textarea>
-                </td>
-            </tr>
-        </table>
+                <div class="linha-inputs">
 
-        <br>
-        <button type="submit" id="btn-salvar">Salvar Produto</button>
-        <button type="button" id="btn-cancelar" style="display:none;">Cancelar Edição</button>
-    </form>
 
-    <br><hr><br>
+                    <div class="grupo-input">
 
-    <!-- Botão para abrir/fechar o estoque -->
-    <button id="btn-toggle-estoque" style="padding: 10px 20px; font-weight: bold; cursor: pointer;">📂 Abrir / Ver Estoque Atual</button>
+                        <label>Foto do Produto</label>
+                        <input type="file" id="foto" accept="image/*">
 
-    <!-- Área de Leitura e Filtros -->
-    <div id="secao-estoque" style="display: none; margin-top: 20px;">
-        <h2>Estoque Atual</h2>
-        
-        <label>Pesquisar por nome:</label>
-        <input type="text" id="busca-nome" placeholder="Digite para buscar...">
 
-        <label>Filtrar por Categoria:</label>
-        <input type="text" id="filtro-categoria" placeholder="Filtrar categoria...">
-        <br><br>
+                        <label>Marca</label>
+                        <input type="text" id="marca" required>
 
-        <table border="1" cellpadding="8" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Marca / Modelo</th>
-                    <th>Cor</th>
-                    <th>Categoria</th>
-                    <th>Descrição</th>
-                    <th>Qtd</th>
-                    <th>Custo</th>
-                    <th>Venda</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="tabela-produtos">
-                <!-- Inserido via JS -->
-            </tbody>
-        </table>
-    </div>
 
-    <script src="produtos.js"></script>
+                        <label>Modelo</label>
+                        <input type="text" id="modelo" required>
+
+
+                    </div>
+
+
+
+                    <div class="grupo-input">
+
+
+                        <label>Cor</label>
+                        <input type="text" id="cor" required>
+
+
+                        <label>Categoria</label>
+                        <input type="text" id="categoria" required>
+
+
+                        <label>Quantidade</label>
+                        <input type="number" id="quantidade" required>
+
+
+                    </div>
+
+
+
+
+                    <div class="grupo-input">
+
+
+                        <label>Preço de Custo</label>
+                        <input type="number" step="0.01" id="preco-custo" required>
+
+
+                        <label>Preço de Venda</label>
+                        <input type="number" step="0.01" id="preco-venda" required>
+
+
+                        <label>Descrição</label>
+                        <textarea id="descricao"></textarea>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="botoes">
+
+                    <button type="submit" id="btn-salvar">
+                        💾 Salvar Produto
+                    </button>
+
+
+                    <button type="button" id="btn-cancelar">
+                        Cancelar
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+
+
+
+        <section class="estoque">
+
+
+            <h2>Estoque Atual</h2>
+
+
+            <div class="filtros">
+
+
+                <input 
+                type="text" 
+                id="busca-nome"
+                placeholder="Pesquisar produto">
+
+
+                <input 
+                type="text" 
+                id="filtro-categoria"
+                placeholder="Filtrar categoria">
+
+
+            </div>
+
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Foto</th>
+                        <th>Produto</th>
+                        <th>Cor</th>
+                        <th>Categoria</th>
+                        <th>Qtd</th>
+                        <th>Custo</th>
+                        <th>Venda</th>
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tabela-produtos">
+
+                </tbody>
+
+
+            </table>
+
+
+        </section>
+
+
+    </main>
+
+
+
+<script src="produtos.js"></script>
+
 </body>
+
 </html>

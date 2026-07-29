@@ -3,85 +3,78 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TechFusion | Primeiro Acesso</title>
+<title>TechFusion | Primeiro Acesso</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <link rel="stylesheet" href="cadastro.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="cadastro.css">
 
 </head>
-
 <body>
 
 <div class="container">
+<div class="left">
+<div class="content">
+<h1>TechFusion</h1>
 
-    <div class="left">
+<p>
+Configure sua empresa para começar a utilizar o sistema.
+</p>
 
-        <div class="content">
+</div>
 
-            <h1>TechFusion</h1>
+</div>
 
-            <p>
-                Configure sua empresa para começar a utilizar o sistema.
-            </p>
+<div class="right">
 
-        </div>
+<form class="login" id="cadastroForm">
 
-    </div>
+<h2>Primeiro Acesso</h2>
 
-    <div class="right">
+<div class="input">
+<i class="fa-solid fa-building"></i>
+<input type="text" id="empresa" placeholder="Nome da Empresa" required>
+</div>
 
-        <form class="login" id="cadastroForm">
+<div class="input">
+<i class="fa-solid fa-id-card"></i>
+<input type="text" id="cnpj" placeholder="CNPJ" required>
+</div>
 
-            <h2>Primeiro Acesso</h2>
+<div class="input">
+<i class="fa-solid fa-envelope"></i>
+<input type="email" id="email" placeholder="E-mail" required>
+</div>
 
-            <div class="input">
-                <i class="fa-solid fa-building"></i>
-                <input type="text" id="empresa" placeholder="Nome da Empresa" required>
-            </div>
+<div class="input">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="senha" placeholder="Senha" required>
+</div>
 
-            <div class="input">
-                <i class="fa-solid fa-id-card"></i>
-                <input type="text" id="cnpj" placeholder="CNPJ" required>
-            </div>
+<div class="input">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="confirmar" placeholder="Confirmar Senha" required>
+</div>
 
-            <div class="input">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email" id="email" placeholder="E-mail" required>
-            </div>
+<button type="submit">
 
-            <div class="input">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="senha" placeholder="Senha" required>
-            </div>
+Cadastrar
 
-            <div class="input">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="confirmar" placeholder="Confirmar Senha" required>
-            </div>
+</button>
 
-            <button type="submit">
+<a href="home.html">Voltar para Login</a>
 
-                Cadastrar
+</form>
 
-            </button>
-
-            <a href="home.html">Voltar para Login</a>
-
-        </form>
-
-    </div>
+</div>
 
 </div>
 
 <script src="cadastro.js"></script>
 
 </body>
-
 </html>

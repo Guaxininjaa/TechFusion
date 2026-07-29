@@ -1,151 +1,377 @@
-const form = document.getElementById('form-produto');
-const tabela = document.getElementById('tabela-produtos');
-const buscaNome = document.getElementById('busca-nome');
-const filtroCategoria = document.getElementById('filtro-categoria');
-const btnCancelar = document.getElementById('btn-cancelar');
-const tituloForm = document.getElementById('titulo-form');
-const btnToggleEstoque = document.getElementById('btn-toggle-estoque');
-const secaoEstoque = document.getElementById('secao-estoque');
+const formulario = document.getElementById("form-produto");
+const tabela = document.getElementById("tabela-produtos");
 
-let estoque = JSON.parse(localStorage.getItem('estoqueTechFusion')) || [];
-let fotoBase64 = "";
+const campoBusca = document.getElementById("busca-nome");
+const campoCategoria = document.getElementById("filtro-categoria");
 
-// Alternar visibilidade do estoque com o botão
-btnToggleEstoque.addEventListener('click', function() {
-    if (secaoEstoque.style.display === "none") {
-        secaoEstoque.style.display = "block";
-        btnToggleEstoque.innerText = "📁 Fechar Estoque Atual";
-    } else {
-        secaoEstoque.style.display = "none";
-        btnToggleEstoque.innerText = "📂 Abrir / Ver Estoque Atual";
+const botaoCancelar = document.getElementById("btn-cancelar");
+const titulo = document.getElementById("titulo-form");
+
+let produtos = JSON.parse(localStorage.getItem("produtosTechFusion")) || [];
+
+let imagem = "";
+
+
+// CARREGAR FOTO
+
+document.getElementById("foto").addEventListener("change", function () {
+
+    let arquivo = this.files[0];
+
+    if (arquivo) {
+
+        let leitor = new FileReader();
+
+        leitor.onload = function (e) {
+            imagem = e.target.result;
+        }
+
+        leitor.readAsDataURL(arquivo);
+
     }
+
 });
 
-document.getElementById('foto').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            fotoBase64 = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
 
-// CREATE / UPDATE
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
 
-    const idInput = document.getElementById('produto-id').value;
-    
-    const produto = {
-        id: idInput ? Number(idInput) : Date.now(),
-        foto: fotoBase64,
-        marca: document.getElementById('marca').value,
-        modelo: document.getElementById('modelo').value,
-        cor: document.getElementById('cor').value,
-        categoria: document.getElementById('categoria').value,
-        quantidade: document.getElementById('quantidade').value,
-        precoCusto: document.getElementById('preco-custo').value,
-        precoVenda: document.getElementById('preco-venda').value,
-        descricao: document.getElementById('descricao').value // Novo campo de descrição
+
+// CADASTRAR / EDITAR PRODUTO
+
+formulario.addEventListener("submit", function (evento) {
+
+    evento.preventDefault();
+
+
+    let id = document.getElementById("produto-id").value;
+
+
+    let produto = {
+
+        id: id ? Number(id) : Date.now(),
+
+        foto: imagem,
+
+        marca: document.getElementById("marca").value,
+
+        modelo: document.getElementById("modelo").value,
+
+        cor: document.getElementById("cor").value,
+
+        categoria: document.getElementById("categoria").value,
+
+        quantidade: document.getElementById("quantidade").value,
+
+        precoCusto: document.getElementById("preco-custo").value,
+
+        precoVenda: document.getElementById("preco-venda").value,
+
+        descricao: document.getElementById("descricao").value
+
     };
 
-    if (idInput) {
-        const index = estoque.findIndex(p => p.id === produto.id);
-        if (fotoBase64 === "") {
-            produto.foto = estoque[index].foto;
+
+
+    if(id){
+
+        let posicao = produtos.findIndex(function(p){
+
+            return p.id == id;
+
+        });
+
+
+        if(imagem == ""){
+
+            produto.foto = produtos[posicao].foto;
+
         }
-        estoque[index] = produto;
-    } else {
-        estoque.push(produto);
+
+
+        produtos[posicao] = produto;
+
+
+    }else{
+
+
+        produtos.push(produto);
+
     }
 
-    salvarEAtualizar();
-    resetarFormulario();
+
+
+    salvarProdutos();
+
+    limparFormulario();
+
+
 });
 
-// READ
-function renderizarTabela() {
-    tabela.innerHTML = '';
-    
-    const termoBusca = buscaNome.value.toLowerCase();
-    const termoCategoria = filtroCategoria.value.toLowerCase();
 
-    const produtosFiltrados = estoque.filter(p => {
-        const nomeCompleto = `${p.marca} ${p.modelo}`.toLowerCase();
-        const bateuNome = nomeCompleto.includes(termoBusca);
-        const bateuCategoria = p.categoria.toLowerCase().includes(termoCategoria);
-        
-        return bateuNome && bateuCategoria;
-    });
 
-    produtosFiltrados.forEach(p => {
-        const tr = document.createElement('tr');
-        const htmlFoto = p.foto ? `<img src="${p.foto}" width="50" height="50">` : 'Sem foto';
 
-        tr.innerHTML = `
-            <td>${htmlFoto}</td>
-            <td><strong>${p.marca}</strong> ${p.modelo}</td>
-            <td>${p.cor}</td>
-            <td>${p.categoria}</td>
-            <td>${p.descricao || ''}</td>
-            <td>${p.quantidade}</td>
-            <td>R$ ${p.precoCusto}</td>
-            <td>R$ ${p.precoVenda}</td>
+
+
+
+// LISTAR PRODUTOS
+
+function listarProdutos(){
+
+
+    tabela.innerHTML = "";
+
+
+
+    let nome = campoBusca.value.toLowerCase();
+
+    let categoria = campoCategoria.value.toLowerCase();
+
+
+
+    produtos.forEach(function(produto){
+
+
+
+        let nomeProduto = 
+        (produto.marca + " " + produto.modelo).toLowerCase();
+
+
+
+        if(nomeProduto.includes(nome) &&
+           produto.categoria.toLowerCase().includes(categoria)){
+
+
+
+            let linha = document.createElement("tr");
+
+
+
+            linha.innerHTML = `
+
+
             <td>
-                <button onclick="prepararEdicao(${p.id})">Editar</button>
-                <button onclick="deletarProduto(${p.id})">Excluir</button>
+
+            ${produto.foto 
+            ? `<img src="${produto.foto}" width="50">`
+            : "Sem foto"}
+
             </td>
-        `;
-        tabela.appendChild(tr);
+
+
+
+            <td>
+
+            ${produto.marca}
+            ${produto.modelo}
+
+            </td>
+
+
+
+            <td>${produto.cor}</td>
+
+
+            <td>${produto.categoria}</td>
+
+
+            <td>${produto.quantidade}</td>
+
+
+            <td>
+            R$ ${produto.precoCusto}
+            </td>
+
+
+            <td>
+            R$ ${produto.precoVenda}
+            </td>
+
+
+            <td>
+
+            <button onclick="editarProduto(${produto.id})">
+            Editar
+            </button>
+
+
+            <button onclick="excluirProduto(${produto.id})">
+            Excluir
+            </button>
+
+
+            </td>
+
+
+            `;
+
+
+
+            tabela.appendChild(linha);
+
+
+        }
+
+
     });
+
+
+
 }
 
-// UPDATE (Preparar edição)
-window.prepararEdicao = function(id) {
-    const produto = estoque.find(p => p.id === id);
-    
-    document.getElementById('produto-id').value = produto.id;
-    document.getElementById('marca').value = produto.marca;
-    document.getElementById('modelo').value = produto.modelo;
-    document.getElementById('cor').value = produto.cor;
-    document.getElementById('categoria').value = produto.categoria;
-    document.getElementById('quantidade').value = produto.quantidade;
-    document.getElementById('preco-custo').value = produto.precoCusto;
-    document.getElementById('preco-venda').value = produto.precoVenda;
-    document.getElementById('descricao').value = produto.descricao || '';
-    
-    fotoBase64 = "";
-    
-    tituloForm.innerText = "Editar Produto";
-    btnCancelar.style.display = "inline";
-    window.scrollTo(0, 0);
-};
 
-// DELETE
-window.deletarProduto = function(id) {
-    if (confirm("Deseja realmente excluir este produto?")) {
-        estoque = estoque.filter(p => p.id !== id);
-        salvarEAtualizar();
+
+
+
+
+// PREPARAR EDIÇÃO
+
+function editarProduto(id){
+
+
+    let produto = produtos.find(function(p){
+
+        return p.id == id;
+
+    });
+
+
+
+    document.getElementById("produto-id").value = produto.id;
+
+
+    document.getElementById("marca").value = produto.marca;
+
+    document.getElementById("modelo").value = produto.modelo;
+
+    document.getElementById("cor").value = produto.cor;
+
+    document.getElementById("categoria").value = produto.categoria;
+
+    document.getElementById("quantidade").value = produto.quantidade;
+
+    document.getElementById("preco-custo").value = produto.precoCusto;
+
+    document.getElementById("preco-venda").value = produto.precoVenda;
+
+    document.getElementById("descricao").value = produto.descricao;
+
+
+
+    imagem = "";
+
+
+
+    titulo.innerText = "Editar Produto";
+
+
+    botaoCancelar.style.display = "inline";
+
+
+    window.scrollTo(0,0);
+
+
+}
+
+
+
+
+
+// EXCLUIR PRODUTO
+
+function excluirProduto(id){
+
+
+    let confirmar = confirm("Deseja excluir este produto?");
+
+
+
+    if(confirmar){
+
+
+        produtos = produtos.filter(function(produto){
+
+            return produto.id != id;
+
+        });
+
+
+
+        salvarProdutos();
+
+
     }
-};
 
-function salvarEAtualizar() {
-    localStorage.setItem('estoqueTechFusion', JSON.stringify(estoque));
-    renderizarTabela();
+
 }
 
-function resetarFormulario() {
-    form.reset();
-    document.getElementById('produto-id').value = "";
-    fotoBase64 = "";
-    tituloForm.innerText = "Cadastrar Novo Produto";
-    btnCancelar.style.display = "none";
+
+
+
+
+
+// SALVAR NO LOCAL STORAGE
+
+function salvarProdutos(){
+
+
+    localStorage.setItem(
+        "produtosTechFusion",
+        JSON.stringify(produtos)
+    );
+
+
+    listarProdutos();
+
+
 }
 
-btnCancelar.addEventListener('click', resetarFormulario);
-buscaNome.addEventListener('input', renderizarTabela);
-filtroCategoria.addEventListener('input', renderizarTabela);
 
-renderizarTabela();
+
+
+
+
+// LIMPAR FORMULÁRIO
+
+function limparFormulario(){
+
+
+    formulario.reset();
+
+
+    document.getElementById("produto-id").value = "";
+
+
+    imagem = "";
+
+
+    titulo.innerText = "Cadastrar Produto";
+
+
+    botaoCancelar.style.display = "none";
+
+
+}
+
+
+
+
+
+
+
+botaoCancelar.addEventListener("click", function(){
+
+    limparFormulario();
+
+});
+
+
+
+campoBusca.addEventListener("input", listarProdutos);
+
+
+campoCategoria.addEventListener("input", listarProdutos);
+
+
+
+
+
+listarProdutos();

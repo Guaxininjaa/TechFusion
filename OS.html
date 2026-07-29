@@ -1,40 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD - Ordem de Serviço</title>
     <link rel="stylesheet" href="OS.css">
-    <title>Ordem de Serviço</title>
 </head>
+
 <body>
-    <h1>Ordem de Serviço</h1>
-    <div class="formulario">
-        <div class="campo">
+
+    <h1>CRUD - Ordem de Serviço</h1>
+
+    <div id="form">
+
+        <div class="container-inputs">
             <label>Cliente</label>
-            <input type="text" id="inputCliente">
+            <input type="text" id="input-cliente">
         </div>
-        <div class="campo">
+
+        <div class="container-inputs">
             <label>Equipamento</label>
-            <input type="text" id="inputEquipamento">
+            <input type="text" id="input-equipamento">
         </div>
-        <div class="campo">
-            <label>Defeito</label>
-            <input type="text" id="inputDefeito">
+
+        <div class="container-inputs">
+            <label>Marca</label>
+            <input type="text" id="input-marca">
         </div>
-        <div class="campo">
+
+        <div class="container-inputs">
+            <label>Modelo</label>
+            <input type="text" id="input-modelo">
+        </div>
+
+        <div class="container-inputs">
+            <label>Defeito Informado</label>
+            <input type="text" id="input-defeito">
+        </div>
+
+        <div class="container-inputs">
+            <label>Acessórios</label>
+            <input type="text" id="input-acessorios">
+        </div>
+
+        <div class="container-inputs">
+            <label>Observações</label>
+            <input type="text" id="input-observacoes">
+        </div>
+
+        <div class="container-inputs">
+            <label>Data de Entrada</label>
+            <input type="date" id="input-data">
+        </div>
+
+        <div class="container-inputs">
             <label>Status</label>
-            <input type="text" id="inputStatus">
+
+            <select id="input-status">
+                <option>Recebido</option>
+                <option>Em análise</option>
+                <option>Aguardando peça</option>
+                <option>Em manutenção</option>
+                <option>Pronto para retirada</option>
+                <option>Entregue</option>
+            </select>
+
         </div>
-        <div class="botoes">
-            <button onclick="cadastrarOS()">Cadastrar</button>
-            <button onclick="salvarOS()">Salvar</button>
-            <button onclick="mostrarTodas()">Mostrar todas</button>
-            <button onclick="excluirOS()">Excluir</button>
+
+        <!-- ID oculto igual ao exemplo do professor -->
+        <div class="container-inputs" id="div-id">
+            <label>ID</label>
+            <input type="number" id="input-id">
         </div>
+
+        <button onclick="cadastrarOS()">+</button>
+        <button onclick="salvarOS()">💾</button>
+        <button onclick="excluirOS()">🗑️</button>
+        <button onclick="pesquisar()">🔍</button>
+
     </div>
-    <div id="painel">
+
+    <div id="painel-botoes">
+
+        <button onclick="mostrarTodas()">
+            Mostrar todas as Ordens de Serviço
+        </button>
+
+    </div>
+
+    <div id="painel-os">
+
+        Nenhuma Ordem de Serviço cadastrada.
+
     </div>
 
     <script src="OS.js"></script>
+
 </body>
+
 </html>
