@@ -1,45 +1,34 @@
-/* Remove as margens padrão do navegador */
 body {
-    margin: 0;
-    height: 100vh;
+margin: 0;
+height: 100vh;
     
-    /* IMAGEM DE FUNDO - Troque o nome do arquivo aqui */
-    background-image: url("imagens.img/bibia.png");
-    background-size: cover;
-    background-color: gray; /* Cor caso a imagem não carregue */
+background-image: url("imagens.img/kkk.png");
+background-size: cover;
+background-color: gray; 
     
-    /* Centraliza o quadrado amarelo bem no meio da tela */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center; /* Centraliza todo o texto */
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center; 
 }
 
-
-
-
-/* Textos na cor preta */
 h1, h2, p, i {
-    color: black;
-    margin-bottom: 10px;
+color: black;
+margin-bottom: 10px;
 }
 
-/* Espaçamento dos campos de digitar */
 .input {
-    margin-bottom: 15px;
+ margin-bottom: 15px;
 }
 
 
 
 .sua-caixa-de-login {
-  /* Substitui a cor de fundo sólida por um branco semi-transparente */
-  background-color: rgba(255, 255, 255, 0.1); 
+background-color: rgba(255, 255, 255, 0.1); 
   
-  /* Aplica o desfoque atrás da caixa para dar o efeito de vidro */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Para compatibilidade com Safari */
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px); 
   
-  /* Melhora a visibilidade com uma borda sutil e cantos arredondados (opcional) */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
