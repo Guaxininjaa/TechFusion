@@ -2,28 +2,27 @@ const login = document.querySelector(".login");
 
 login.addEventListener("submit", function (event) {
 
-    event.preventDefault();
+event.preventDefault();
 
-    const email = document.querySelector('input[type="email"]').value;
-    const senhaDigitada = document.querySelector("#senha").value;
+const email = document.querySelector('input[type="email"]').value;
+const senhaDigitada = document.querySelector("#senha").value;
 
-    const empresa = JSON.parse(localStorage.getItem("empresa"));
+const empresa = JSON.parse(localStorage.getItem("empresa"));
 
-    if (!empresa) {
-        alert("Nenhuma empresa cadastrada.");
-        return;
-    }
+if (!empresa) {
+alert("Nenhuma empresa cadastrada.");
+return;
+}
+if (email === empresa.email && senhaDigitada === empresa.senha) {
 
-    if (email === empresa.email && senhaDigitada === empresa.senha) {
+localStorage.setItem("logado", "true");
 
-        localStorage.setItem("logado", "true");
+window.location.href = "dashboard.html";
 
-        window.location.href = "dashboard.html";
+} else {
 
-    } else {
+alert("E-mail ou senha incorretos.");
 
-        alert("E-mail ou senha incorretos.");
-
-    }
+}
 
 });

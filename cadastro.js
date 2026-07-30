@@ -7,30 +7,30 @@ event.preventDefault();
 const empresa = document.querySelector("#empresa").value;
 const cnpj = document.querySelector("#cnpj").value;
 const email = document.querySelector("#email").value;
-    const senha = document.querySelector("#senha").value;
-    const confirmar = document.querySelector("#confirmar").value;
+const senha = document.querySelector("#senha").value;
+const confirmar = document.querySelector("#confirmar").value;
 
-    if(senha !== confirmar){
+if(senha !== confirmar){
 
-        alert("As senhas não coincidem.");
+alert("As senhas não coincidem.");
 
-        return;
+return;
 
-    }
+}
 
-    const dadosEmpresa = {
+const dadosEmpresa = {
 
-        empresa,
-        cnpj,
-        email,
-        senha
+empresa,
+cnpj,
+email,
+senha
 
-    };
+};
 
-    localStorage.setItem("empresa", JSON.stringify(dadosEmpresa));
+localStorage.setItem("empresa", JSON.stringify(dadosEmpresa));
 
-    alert("Cadastro realizado com sucesso!");
+alert("Cadastro realizado com sucesso!");
 
-    window.location.href = "home.html";
+window.location.href = "home.html";
 
 });
